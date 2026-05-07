@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>WLS Niestetal | Offizielles Feedback-Portal 2026</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-orange: #d9531e;
+            --primary-dark: #0f172a;
+            --accent-blue: #3b82f6;
+            --bg-body: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --radius: 20px;
+            --transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        /* Основные настройки скролла и отображения */
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        /* --- ADVANCED ANIMATIONS --- */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulseGlow {
+            0% { box-shadow: 0 0 0 0 rgba(217, 83, 30, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(217, 83, 30, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(217, 83, 30, 0); }
+        }
+
+        /* --- MODERN NAVIGATION --- */
+        nav {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 5%;
+            border-bottom: 3px solid var(--primary-orange);
+            position: sticky;
+            top: 0;
+            z-index: 2000;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .nav-logo-circle {
+            width: 40px;
+            height: 40px;
+            background: var(--primary-orange);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 900;
+        }
+
+        .nav-text {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            color: var(--primary-dark);
+            font-size: 1.2rem;
+            letter-spacing: -0.5px;
+        }
+
+        /* --- HERO AREA --- */
+        .hero {
+            background: var(--primary-dark);
+            color: white;
+            padding: 100px 20px 140px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at center, rgba(217, 83, 30, 0.2) 0%, transparent 70%);
+        }
+
+        .hero h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(2rem, 8vw, 3.5rem);
+            margin: 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.8;
+            max-width: 700px;
+            margin: 20px auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* --- MAIN CONTENT WRAPPER --- */
+        .main-container {
+            max-width: 900px;
+            margin: -80px auto 60px;
+            padding: 0 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 40px;
+            margin-bottom: 35px;
+            box-shadow: 0 15px 30px -5px rgba(0,0,0,0.05);
+            border: 1px solid rgba(255,255,255,1);
+            animation: fadeInUp 0.8s var(--transition);
+        }
+
+        .section-tag {
+            color: var(--primary-orange);
+            font-weight: 800;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8rem;
+            margin: 0 0 25px 0;
+            color: var(--primary-dark);
+        }
+
+        /* --- ADVANCED FORMS --- */
+        .form-group { margin-bottom: 30px; position: relative; }
+        
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--primary-dark);
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 18px;
+            border: 2px solid #e2e8f0;
+            border-radius: 15px;
+            font-size: 1rem;
+            font-family: inherit;
+            background: #fdfdfd;
+            transition: var(--transition);
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary-orange);
+            box-shadow: 0 0 0 5px rgba(217, 83, 30, 0.1);
+            background: #fff;
+        }
+
+        .btn-submit {
+            background: var(--primary-orange);
+            color: white;
+            border: none;
+            padding: 22px;
+            border-radius: 15px;
+            font-size: 1.1rem;
+            font-weight: 800;
+            cursor: pointer;
+            width: 100%;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-5px);
+            background: #b34218;
+            box-shadow: 0 15px 30px rgba(217, 83, 30, 0.3);
+        }
+
+        /* --- DYNAMIC RANKING STYLES --- */
+        .ranking-wrapper {
+            margin-top: 30px;
+        }
+
+        .ranking-item {
+            display: flex;
+            align-items: center;
+            padding: 25px;
+            background: #f8fafc;
+            border-radius: 18px;
+            margin-bottom: 15px;
+            border: 1px solid #edf2f7;
+            transition: var(--transition);
+        }
+
+        .ranking-item:hover {
+            transform: scale(1.02);
+            background: white;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            border-color: var(--primary-orange);
+        }
+
+        .rank-pos {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--primary-orange);
+            width: 50px;
+        }
+
+        .teacher-info {
+            flex-grow: 1;
+        }
+
+        .teacher-info b { font-size: 1.2rem; display: block; }
+        .teacher-info small { color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
+
+        .vote-pill {
+            background: var(--primary-dark);
+            color: white;
+            padding: 8px 18px;
+            border-radius: 50px;
+            font-weight: 800;
+        }
+
+        .empty-ranking {
+            text-align: center;
+            padding: 60px 20px;
+            background: #f1f5f9;
+            border-radius: var(--radius);
+            border: 3px dashed #cbd5e1;
+            color: var(--text-muted);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background: white;
+            padding: 60px 20px;
+            text-align: center;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .footer-logo {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            color: var(--primary-orange);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        /* --- MODAL EFFECT --- */
+        .success-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.85);
+            z-index: 3000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            backdrop-filter: blur(8px);
+        }
+
+        /* --- RESPONSIVE TABLET/PHONE --- */
+        @media (max-width: 768px) {
+            .hero { padding: 80px 20px 120px; }
+            .card { padding: 25px; border-radius: 25px; }
+            .main-container { margin-top: -60px; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="#" class="nav-brand">
+        <div class="nav-logo-circle">W</div>
+        <div class="nav-text">WLS NIESTETAL</div>
+    </a>
+    <div style="font-size: 0.8rem; font-weight: 700; color: var(--primary-orange);">
+        STATUS: ONLINE
+    </div>
+</nav>
+
+<section class="hero">
+    <h1>Eure Schule, eure Meinung.</h1>
+    <p>Das digitale Portal für Feedback, Wünsche und das Lehrer-Ranking der Wilhelm-Leuschner-Schule.</p>
+</section>
+
+<div class="main-container">
+
+    <div class="card">
+        <span class="section-tag">Anonymes Feedback</span>
+        <h2>💡 Verbesserungsvorschläge</h2>
+        <form id="feedbackForm">
+            <div class="form-group">
+                <label for="category">Themenbereich</label>
+                <select id="category" required>
+                    <option value="" disabled selected>Kategorie wählen...</option>
+                    <option value="mensa">🍽️ Mensa & Kartenzahlung</option>
+                    <option value="hygiene">🚿 Toiletten & Sauberkeit</option>
+                    <option value="digital">💻 WLAN & iPad Probleme</option>
+                    <option value="sport">🏀 Sport & Pausenhof</option>
+                    <option value="lehrer">👩‍🏫 Unterricht & Methoden</option>
+                    <option value="sonstiges">🌀 Sonstiges</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="feedbackText">Was genau können wir verbessern?</label>
+                <textarea id="feedbackText" rows="6" placeholder="Deine Nachricht an die SV..." required></textarea>
+            </div>
+            <button type="submit" class="btn-submit">
+                NACHRICHT ABSENDEN
+            </button>
+        </form>
+    </div>
+
+    <div class="card">
+        <span class="section-tag">Demokratie & Spaß</span>
+        <h2>🗳️ Lehrer des Jahres</h2>
+        <p style="color: var(--text-muted); margin-bottom: 25px;">
+            Wähle deine Lieblingslehrkraft. Das Ranking basiert auf allen abgegebenen Stimmen der Schüler.
+        </p>
+        
+        <div class="form-group">
+            <label for="teacherSearch">Lehrkraft suchen</label>
+            <select id="teacherSearch" required>
+                <option value="" disabled selected>Name auswählen...</option>
+                
+                <optgroup label="Team 6">
+                    <option>Frau Bleichert</option><option>Frau Gerke</option><option>Frau Kudlek</option>
+                    <option>Frau Niebuhr</option><option>Herr Otter</option><option>Frau Prause</option>
+                    <option>Herr Schöps</option><option>Frau Seibert</option><option>Frau Sjöström</option>
+                    <option>Frau Stiebich</option><option>Frau Tadych</option>
+                </optgroup>
+                <optgroup label="Team 7">
+                    <option>Frau Allendorf</option><option>Frau Hines</option><option>Herr Bräumer</option>
+                    <option>Herr Bremmer</option><option>Herr Eckel</option><option>Frau Egbers</option>
+                    <option>Frau Fischer-Wasels</option><option>Frau Gerber</option><option>Frau Koch</option>
+                    <option>Herr Malena</option><option>Frau Marques Kehl</option><option>Frau Schummer</option>
+                    <option>Frau Zaun</option>
+                </optgroup>
+                <optgroup label="Team 8">
+                    <option>Herr Braukhof</option><option>Frau Diedrich</option><option>Herr Hannappel</option>
+                    <option>Herr Hille</option><option>Herr Kasper</option><option>Frau Kuntschik</option>
+                    <option>Frau Maisner-Unruh</option><option>Herr Matthies</option><option>Frau Siebert</option>
+                    <option>Frau Dr. Schrage-Lang</option><option>Frau Schreiber</option><option>Frau Stürmer</option>
+                    <option>Frau Thies</option>
+                </optgroup>
+                <optgroup label="Team 9">
+                    <option>Frau Balhorn</option><option>Frau Benedetti</option><option>Frau Dettmer</option>
+                    <option>Frau Grebe</option><option>Frau Gutheil</option><option>Frau Herrmann</option>
+                    <option>Frau Jandt</option><option>Herr Nägel</option><option>Herr Wilke</option>
+                    <option>Frau Worch</option><option>Frau Zypries</option>
+                </optgroup>
+                <optgroup label="Team 10">
+                    <option>Frau Bös</option><option>Frau Böttcher</option><option>Frau Gaida</option>
+                    <option>Herr Dr. Krieg</option><option>Herr Linsing</option><option>Frau Steffen</option>
+                    <option>Frau Umbach</option><option>Frau Wenz</option>
+                </optgroup>
+                <optgroup label="Fachlehrer & WK">
+                    <option>Frau Bejcon-Wittig</option><option>Herr Benz</option><option>Frau Krüger</option>
+                    <option>Frau Ben Nafka</option><option>Frau Beyer</option><option>Herr Hödl</option>
+                    <option>Frau Kaiser</option><option>Frau Karkos</option><option>Herr Künzel</option>
+                    <option>Frau Moldenhauer</option><option>Herr Pittner</option><option>Herr Rassek</option>
+                    <option>Frau Schröder</option><option>Frau Schwarzwälder</option><option>Frau Sobat-Feizi</option>
+                    <option>Frau Methe</option>
+                </optgroup>
+            </select>
+        </div>
+        <button type="button" class="btn-submit" onclick="processVote()" style="background: var(--primary-dark);">
+            STIMME ABGEBEN
+        </button>
+    </div>
+
+    <div class="card" id="ranking-section">
+        <span class="section-tag">Live Auswertung</span>
+        <h2>🏆 Aktuelle Top 10</h2>
+        <div id="rankingDisplay">
+            </div>
+    </div>
+
+</div>
+
+<div id="successModal" class="success-overlay" onclick="closeModal()">
+    <div>
+        <h1 style="font-size: 5rem;">✅</h1>
+        <h2 style="color: white; font-size: 2.5rem;">Erfolgreich!</h2>
+        <p>Deine Stimme/Feedback wurde anonym verarbeitet.</p>
+        <button class="btn-submit" style="width: auto; padding: 15px 40px; margin: 20px auto;">OK</button>
+    </div>
+</div>
+
+<footer>
+    <div class="footer-logo">WLS Niestetal</div>
+    <p>Ein Schülerprojekt zur Verbesserung der Schulkultur.<br>Gestaltet für die Projektpräsentation 2026.</p>
+    <p style="margin-top: 20px; font-size: 0.7rem;">&copy; 2026 Alle Rechte vorbehalten. Anonymität garantiert.</p>
+</footer>
+
+<script>
+    // Инициализация базы данных в локальном хранилище браузера
+    let storageKey = 'wls_v3_data';
+    let db = JSON.parse(localStorage.getItem(storageKey)) || {
+        votes: {},
+        lastVoteTime: null
+    };
+
+    // Функция отрисовки рейтинга
+    function renderRanking() {
+        const display = document.getElementById('rankingDisplay');
+        
+        // Превращаем объект голосов в массив для сортировки
+        const sorted = Object.entries(db.votes)
+            .map(([name, count]) => ({ name, count }))
+            .sort((a, b) => b.count - a.count);
+
+        if (sorted.length === 0) {
+            display.innerHTML = `
+                <div class="empty-ranking">
+                    <h3 style="margin:0">Noch keine Daten vorhanden</h3>
+                    <p>Gib die erste Stimme ab, um das Ranking zu starten!</p>
+                </div>`;
+            return;
+        }
+
+        // Генерируем HTML для ТОП-10
+        display.innerHTML = sorted.slice(0, 10).map((item, index) => `
+            <div class="ranking-item">
+                <div class="rank-pos">#${index + 1}</div>
+                <div class="teacher-info">
+                    <b>${item.name}</b>
+                    <small>Wilhelm-Leuschner-Schule</small>
+                </div>
+                <div class="vote-pill">${item.count} Votes</div>
+            </div>
+        `).join('');
+    }
+
+    // Логика голосования
+    function processVote() {
+        const select = document.getElementById('teacherSearch');
+        const teacherName = select.value;
+
+        if (!teacherName) {
+            alert("Bitte wähle zuerst eine Lehrkraft aus!");
+            return;
+        }
+
+        // Обновляем данные
+        db.votes[teacherName] = (db.votes[teacherName] || 0) + 1;
+        saveData();
+        
+        // Показываем успех и обновляем экран
+        showModal();
+        renderRanking();
+        select.value = "";
+    }
+
+    // Сохранение данных
+    function saveData() {
+        localStorage.setItem(storageKey, JSON.stringify(db));
+    }
+
+    // Работа с модальным окном
+    function showModal() {
+        document.getElementById('successModal').style.display = 'flex';
+    }
+
+    function closeModal() {
+        document.getElementById('successModal').style.display = 'none';
+    }
+
+    // Обработка формы предложений
+    document.getElementById('feedbackForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        showModal();
+        this.reset();
+    });
+
+    // Запуск при загрузке
+    window.onload = renderRanking;
+</script>
+
+</body>
+</html>
